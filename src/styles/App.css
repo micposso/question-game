@@ -1,0 +1,22 @@
+.ui.attached.tabular.menu {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+select.form-control {
+  margin-bottom: 20px;
+}
+
+.ui.menu:first-child {
+  margin-top: 20px;
+}
+
+.ui.menu:last-child {
+  margin-bottom: 40px;
+}
+
+img.ui.image {
+  display: block;
+  margin: 0 auto;
+}
