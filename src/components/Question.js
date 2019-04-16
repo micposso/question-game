@@ -5,13 +5,13 @@ import { connect } from "react-redux";
 import { handleAnswerQuestion } from "../actions/questions";
 import {
   Grid,
-  Radio,
   Image,
   Segment,
   Button,
   Header,
   Divider,
-  Label
+  Label,
+  Form
 } from "semantic-ui-react";
 
 class Question extends Component {
@@ -26,6 +26,8 @@ class Question extends Component {
   };
 
   handleRadioOptionChange = value => {
+    console.log("VALUE", value);
+
     this.setState({
       option: value,
       submitError: false
@@ -71,35 +73,36 @@ class Question extends Component {
               )}
               {author && (
                 <div>
-                  <Image
-                    src={author.avatarURL}
-                    alt="profile"
-                    size="medium"
-                  />
+                  <Image src={author.avatarURL} alt="profile" size="medium" />
                   <Segment textAlign="center">
                     <Header as="h3">{author.name} asks:</Header>
                     <Divider />
                     <Header as="h4">Would you rather?</Header>
                     {question && (
-                      <form action="" className="question-form">
-                        <Radio
-                          label={question.optionOne.text}
+                      <Form>
+                        <input
                           type="radio"
                           name="answer"
                           value="optionOne"
-                          onChange={ (e) => this.handleRadioOptionChange(e.target.value) }
+                          onChange={e =>
+                            this.handleRadioOptionChange(e.target.value)
+                          }
                         />
+                        &nbsp;{question.optionOne.text}
                         <br />
                         <div>Or</div>
                         <br />
-                        <Radio
-                          label={question.optionTwo.text}
+                        <input
                           type="radio"
                           name="answer"
                           value="optionTwo"
-                          onChange={ (e) => this.handleRadioOptionChange(e.target.value) }
-                        />
-                      </form>
+                          onChange={e =>
+                            this.handleRadioOptionChange(e.target.value)
+                          }
+                        />{" "}
+                        {question.optionTwo.text}
+                        &nbsp;{question.optionTwo.text}
+                      </Form>
                     )}
                     <Divider />
                     <Button
