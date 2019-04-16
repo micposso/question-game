@@ -11,7 +11,7 @@ class NotFound extends Component {
       return (
         <Container textAlign='centered'>            
             <Header as='h2'>Opps, you got lost</Header>
-                <Button as={NavLink} to='/dashboard' exact>
+                <Button as={NavLink} to='/login' exact>
                     Return to the Dashboard
                 </Button>
         </Container>

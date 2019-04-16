@@ -44,7 +44,7 @@ function answerQuestion (authedUser, qid, answer) {
   }
 }
 
-export function handleAnswerQuestion (authedUser, qid, answer ) {
+export function handleAnswerQuestion (authedUser, qid, answer) {
   return (dispatch) => {
     return saveQuestionAnswer({
       qid, 
