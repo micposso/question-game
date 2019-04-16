@@ -15,6 +15,7 @@ import {
 } from "semantic-ui-react";
 
 class Question extends Component {
+  
   componentDidMount() {
     if (this.props.authedUser === null)
       this.props.history.push(`/login/redirect/${this.props.match.params.id}`);
@@ -26,8 +27,6 @@ class Question extends Component {
   };
 
   handleRadioOptionChange = value => {
-    console.log("VALUE", value);
-
     this.setState({
       option: value,
       submitError: false

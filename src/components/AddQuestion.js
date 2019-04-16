@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import Navigation from "./Navigation";
+import { Redirect } from 'react-router-dom'
 import { handleAddQuestion } from "../actions/questions";
 import { Grid, Input, Segment, Button, Header, Label } from "semantic-ui-react";
 
@@ -11,6 +12,7 @@ class AddQuestion extends Component {
     optionsIncomplete: false,
     questionAdded: false
   };
+
   handleOptionOneChange = optionOne => {
     this.setState({
       optionOne,
@@ -18,6 +20,7 @@ class AddQuestion extends Component {
       questionAdded: false
     });
   };
+
   handleOptionTwoChange = optionTwo => {
     this.setState({
       optionTwo,
@@ -25,11 +28,9 @@ class AddQuestion extends Component {
       questionAdded: false
     });
   };
+
   handleAddQuestionClick = () => {
-    if (
-      this.state.optionOne.trim() === "" ||
-      this.state.optionTwo.trim() === ""
-    ) {
+    if (this.state.optionOne.trim() === "" || this.state.optionTwo.trim() === "") {
       this.setState({
         optionsIncomplete: true,
         optionOne: "",
@@ -37,6 +38,7 @@ class AddQuestion extends Component {
       });
       return;
     }
+
     this.props.dispatch(
       handleAddQuestion(
         this.state.optionOne,
@@ -45,13 +47,14 @@ class AddQuestion extends Component {
       )
     );
     this.setState({ questionAdded: true, optionOne: "", optionTwo: "" });
+    this.props.history.push('/dashboard')
   };
+
   render() {
     const { questionAdded, optionsIncomplete } = this.state;
     return (
       <Fragment>
         <Navigation />
-
         <Grid centered>
           <Grid.Column width={5}>
             <Segment textAlign="center" stacked>
