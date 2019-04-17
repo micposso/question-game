@@ -15,7 +15,7 @@ class Navigation extends Component {
 
     componentDidMount(){
         // redirect to login if no authedUser
-        this.props.authedUser === "" && this.props.history.push('/')
+        this.props.authedUser === "" && this.props.history.push('/leaderboard')
     }
 
     handleItemClick = (e, { name }) => this.setState({ activeItem: name })
