@@ -2,13 +2,10 @@ import React, { Component, Fragment } from "react";
 import Navigation from "./Navigation";
 import { connect } from "react-redux";
 import {
-  Tab,
   Grid,
   Image,
   Segment,
-  Button,
   Header,
-  Divider,
   Label
 } from "semantic-ui-react";
 

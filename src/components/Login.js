@@ -1,14 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { authenticate } from "../actions/shared";
-import {
-  Button,
-  Form,
-  Grid,
-  Header,
-  Segment
-} from "semantic-ui-react";
-import { GiGamepad } from 'react-icons/gi';
+import { Button, Form, Grid, Header, Segment } from "semantic-ui-react";
 
 class Login extends Component {
   state = {
@@ -28,14 +21,13 @@ class Login extends Component {
   handleClick = () => {
     if (this.state.user !== "") {
       this.props.dispatch(authenticate(this.state.user));
-      
-      if (this.props.history.location.state !== undefined) {
-        let location = this.props.history.location.state.referrer
-        this.props.history.push(location)
-      } else {
-        this.props.history.push("/dashboard")
-      }
 
+      if (this.props.history.location.state !== undefined) {
+        let location = this.props.history.location.state.referrer;
+        this.props.history.push(location);
+      } else {
+        this.props.history.push("/dashboard");
+      }
     } else {
       this.setState({
         login_failed: true
@@ -48,60 +40,58 @@ class Login extends Component {
     const { login_failed, user } = this.state;
 
     return (
-      <div className='login-form'>
-      {/*
-        Heads up! The styles below are necessary for the correct render of this example.
-        You can do same with CSS, the main idea is that all the elements up to the `Grid`
-        below must have a height of 100%.
-      */}
-      <style>{`
+      <div className="login-form">
+        <style>
+          {`
         body > div,
         body > div > div,
         body > div > div > div.login-form {
           height: 100%;
         }
       `}
-      </style>
-      <Grid textAlign='center' style={{ height: '100%' }} verticalAlign='middle'>
-        <Grid.Column style={{ maxWidth: 450 }}>
-          <GiGamepad color='green' size='small' style={{ maxWidth: 200 }} />
-          <Form size="large" onSubmit={(this.handleClick.bind(this))} >
- 
-            <Segment stacked>
-            <Header as="h2" color="teal" textAlign="center">
-            Play the Questions Game
-            {login_failed && (
-              <div>
-                <small className="pink-text">
-                  You have to choose a user to login
-                </small>
-              </div>
-            )}
-          </Header>
-              <select
-                className="form-control"
-                value={user}
-                onChange={e => this.handleUserSelected(e.target.value)}
-              >
-                <option value="">Choose a User</option>
-                {users.length > 0 &&
-                  users.map(user => (
-                    <option className='login-options' value={user.id} key={user.id}>
-                      {user.name}
-                    </option>
-                  ))}
-              </select>
-              <Button
-                color="green"
-                fluid
-                size="large"
-              >
-                Login
-              </Button>
-            </Segment>
-          </Form>
-        </Grid.Column>
-      </Grid>
+        </style>
+        <Grid
+          textAlign="center"
+          style={{ height: "100%" }}
+          verticalAlign="middle"
+        >
+          <Grid.Column style={{ maxWidth: 450 }}>
+            <Form size="large" onSubmit={this.handleClick.bind(this)}>
+              <Segment stacked>
+                <Header as="h2" color="teal" textAlign="center">
+                  Play the Questions Game
+                  {login_failed && (
+                    <div>
+                      <small className="pink-text">
+                        You have to choose a user to login
+                      </small>
+                    </div>
+                  )}
+                </Header>
+                <select
+                  className="form-control"
+                  value={user}
+                  onChange={e => this.handleUserSelected(e.target.value)}
+                >
+                  <option value="">Choose a User</option>
+                  {users.length > 0 &&
+                    users.map(user => (
+                      <option
+                        className="login-options"
+                        value={user.id}
+                        key={user.id}
+                      >
+                        {user.name}
+                      </option>
+                    ))}
+                </select>
+                <Button color="green" fluid size="large">
+                  Login
+                </Button>
+              </Segment>
+            </Form>
+          </Grid.Column>
+        </Grid>
       </div>
     );
   }

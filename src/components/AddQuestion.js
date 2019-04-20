@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import Navigation from "./Navigation";
-import { Redirect } from 'react-router-dom'
 import { handleAddQuestion } from "../actions/questions";
 import { Grid, Input, Segment, Button, Header, Label } from "semantic-ui-react";
 
