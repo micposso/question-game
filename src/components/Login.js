@@ -10,17 +10,11 @@ import {
 } from "semantic-ui-react";
 import { GiGamepad } from 'react-icons/gi';
 
-
 class Login extends Component {
   state = {
     user: "",
     login_failed: false
   };
-
-  componentDidMount() {
-    // redirect to home if user is already authenticated
-    this.props.authedUser && this.props.history.push("/dashboard");
-  }
 
   handleUserSelected = user => {
     if (user !== "") {
@@ -34,9 +28,14 @@ class Login extends Component {
   handleClick = () => {
     if (this.state.user !== "") {
       this.props.dispatch(authenticate(this.state.user));
-      this.props.match.params.id
-        ? this.props.history.push(`/questions/${this.props.match.params.id}`)
-        : this.props.history.push("/dashboard");
+      
+      if (this.props.history.location.state !== undefined) {
+        let location = this.props.history.location.state.referrer
+        this.props.history.push(location)
+      } else {
+        this.props.history.push("/dashboard")
+      }
+
     } else {
       this.setState({
         login_failed: true
@@ -45,9 +44,9 @@ class Login extends Component {
   };
 
   render() {
-    
     const { users } = this.props;
     const { login_failed, user } = this.state;
+
     return (
       <div className='login-form'>
       {/*
@@ -66,7 +65,7 @@ class Login extends Component {
       <Grid textAlign='center' style={{ height: '100%' }} verticalAlign='middle'>
         <Grid.Column style={{ maxWidth: 450 }}>
           <GiGamepad color='green' size='small' style={{ maxWidth: 200 }} />
-          <Form size="large">
+          <Form size="large" onSubmit={(this.handleClick.bind(this))} >
  
             <Segment stacked>
             <Header as="h2" color="teal" textAlign="center">
@@ -96,7 +95,6 @@ class Login extends Component {
                 color="green"
                 fluid
                 size="large"
-                onClick={this.handleClick}
               >
                 Login
               </Button>
