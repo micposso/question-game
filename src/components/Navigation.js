@@ -23,7 +23,7 @@ class Navigation extends Component {
     render(){
         const { activeItem } = this.state
 
-        const { avatar, authedUser, name } = this.props
+        const { avatar, name } = this.props
         return (
           <Container>
 

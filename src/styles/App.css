@@ -8,6 +8,10 @@ select.form-control {
   margin-bottom: 20px;
 }
 
+.labels {
+  margin-bottom: 10px;
+}
+
 .ui.menu:first-child {
   margin-top: 20px;
 }
