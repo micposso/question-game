@@ -93,7 +93,6 @@ class Dashboard extends Component {
                     <Grid.Column width={4} divided>
                       <Image
                         src={users[question.author].avatarURL}
-                        size="small"
                       />
                     </Grid.Column>
 
